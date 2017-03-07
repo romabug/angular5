@@ -1,7 +1,7 @@
 //详细gulp  教程 http://www.cnblogs.com/2050/p/4198792.html
 //https://segmentfault.com/q/1010000004234745?_ea=556298
 /*jshint node: true*/
-//引入gulp及各种组件;   
+//引入gulp及各种组件;     
 
 var gulp = require('gulp'),
     uglify = require('gulp-uglify'), //js 文件压缩
