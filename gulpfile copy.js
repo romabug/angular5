@@ -1,7 +1,7 @@
 //珍贵 https://segmentfault.com/q/1010000004234745?_ea=556298
 
 
-//00 r44   equire      
+//0rr   equire      
 var gulp = require('gulp');
 //sass  http://jingyan.baidu.com/album/14bd256e7f7d7fbb6d2612c4.html
 var sass = require('gulp-sass');
