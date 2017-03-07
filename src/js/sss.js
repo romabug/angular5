@@ -2,7 +2,7 @@
 
 var
   glob = require('glob'),  
-  _ = require('lodash'),
+  _ = require('lodash'),  
   fs = require('fs'),
   path = require('path'),
   jsbeautify = require('js-beautify').js_beautify,
