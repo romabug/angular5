@@ -69,7 +69,7 @@ plugins.validateYaml = require('gulp-yaml-validate');
 })();
 
 (function() {
-  //build files before gulp tasks
+  //build ddff files before gulp tasks
   var
     replaceFiles = fs.readFileSync('./gulp/_bundle.js').toString(),
     rjsShimeConfig = fs.readFileSync('./src/js/rjs-shim.json').toString();
