@@ -7,7 +7,7 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'), //js 文件压缩
     minifyCSS = require('gulp-minify-css'),
     sass = require('gulp-sass'),
-    //   重命名     rename = require('gulp-rename'),
+    // 重命名     rename = require('gulp-rename'),
     //压缩html   minifyHtml = require("gulp-minify-html");
     //JS代码检查  jshint = require("gulp-jshint");
     //文件合并    concat = require("gulp-concat");
@@ -19,7 +19,7 @@ var gulp = require('gulp'),
     //   imageminOptipng = require('imagemin-optipng'),
     browserSync = require('browser-sync').create();
 
-//
+////
 //设置各种输入输出文件夹的位置;
 
 var srcScript = './src/js/*.js',
