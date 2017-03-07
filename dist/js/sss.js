@@ -1,1 +1,77 @@
-"use strict";var glob=require("glob"),_=require("lodash"),fs=require("fs"),path=require("path"),jsbeautify=require("js-beautify").js_beautify,pkg=require("./package.json"),plugins=require("gulp-load-plugins")(),runSequence=require("run-sequence"),argv=require("yargs").argv,args=[],stamp={pkg:pkg},getBaseHref=function(e){var r,a=pkg.build.baseHref.split("|"),i=a[0],s=[];return a.forEach(function(e){s.push("^"+e+"$")}),r=new RegExp(s.join("|")),i=e?e.match(r)[0]:i},getDirectories=function(e){return fs.readdirSync(e).filter(function(r){return fs.statSync(path.join(e,r)).isDirectory()})},gulp=require("gulp");plugins.gutil=require("gulp-util"),plugins.prefixer=require("gulp-autoprefixer"),plugins.gif=require("gulp-if"),plugins.tmpl=require("gulp-template"),plugins.reload=require("gulp-livereload"),plugins.prettify=require("gulp-jsbeautifier"),plugins.validateYaml=require("gulp-yaml-validate"),function(){stamp.jsbeautifyrc=JSON.parse(fs.readFileSync("./.jsbeautifyrc").toString())}(),function(){var e=require("./src/js/rjs-vendor.json"),r=getDirectories("bower_components"),a={};_.difference(r,Object.keys(e)).map(function(e){a[e]={ignore:!0}}),fs.writeFileSync("./gulp/lib/bower-overrides.json",jsbeautify(JSON.stringify(_.assign(e,a)),stamp.jsbeautifyrc.js))}(),function(){var e=fs.readFileSync("./gulp/_bundle.js").toString(),r=fs.readFileSync("./src/js/rjs-shim.json").toString();e=e.replace("//=include rjs-shim.json",r),fs.writeFileSync("./gulp/bundle.js",jsbeautify(e,stamp.jsbeautifyrc.js))}(),argv.production=argv.production||argv.minify,stamp.production=argv.production,stamp.routePrefix=pkg.build.html5mode?"":"#!",_.isString(argv.build)&&getBaseHref(argv.build)===argv.build?stamp.buildDir=stamp.serveDir=stamp.baseHref=argv.build:stamp.buildDir=stamp.serveDir=stamp.baseHref=getBaseHref(),stamp.hostname="localhost",stamp.port="2015",argv.ip?(stamp.hostname=require("dev-ip")()[0]||stamp.hostname,stamp.host="//"+stamp.hostname+":"+stamp.port+"/"+stamp.buildDir+"/"):stamp.host="",stamp.serviceUrl=pkg.build.service.name,argv.api&&(stamp.apiDir=pkg.build.service.name,stamp._apiHostname=stamp.hostname,stamp._apiPort=3*stamp.port,stamp.serviceUrl="//"+stamp._apiHostname+":"+stamp._apiPort+"/"+stamp.serviceUrl),stamp.prelaunch=argv.prelaunch,argv.production&&(argv.build||(stamp.baseHref=getBaseHref("oa")),stamp.production=argv.production),stamp.bundledjs=process.cwd()+"/src/js/rjs-bundle.json",args=[gulp,plugins,argv,stamp],require("./gulp/clean").apply(null,args),(argv.login||argv.production)&&require("./gulp/build-login").apply(null,[].concat(args).concat([runSequence])),require("./gulp/copy").apply(null,[].concat(args).concat([runSequence])),require("./gulp/bundle").apply(null,[].concat(args).concat([runSequence])),require("./gulp/build").apply(null,[].concat(args).concat([runSequence])),require("./gulp/lint").apply(null,args),require("./gulp/test").apply(null,[].concat(args).concat([runSequence])),require("./gulp/watch").apply(null,args),require("./gulp/serve").apply(null,[].concat(args).concat([runSequence])),require("./gulp/format").apply(null,args),gulp.task("default",["build"]);
+
+
+//2222222222
+//22222222ddd232ee
+//2222222222444ss
+argv.production = argv.production || argv.minify;
+
+stamp.production = argv.production;
+stamp.routePrefix = pkg.build.html5mode ? '' : '#!';
+
+//--build='oa', --build='oas'
+if (_.isString(argv.build) && getBaseHref(argv.build) === argv.build) {
+  stamp.buildDir = stamp.serveDir = stamp.baseHref = argv.build;
+} else {
+  stamp.buildDir = stamp.serveDir = stamp.baseHref = getBaseHref();
+}
+
+//serve setting
+stamp.hostname = 'localhost';
+stamp.port = '2015';
+
+if (argv.ip) {
+  stamp.hostname = require('dev-ip')()[0] || stamp.hostname;
+  stamp.host = '//' + stamp.hostname + ':' + stamp.port + '/' + stamp.buildDir + '/';
+} else {
+  stamp.host = '';
+}
+
+// stamp.serviceUrl = pkg.build.service.name + '/' + pkg.build.service.version;
+stamp.serviceUrl = pkg.build.service.name;
+
+if (argv.api) {
+  // _api host
+  stamp.apiDir = pkg.build.service.name;
+  stamp._apiHostname = stamp.hostname;
+  stamp._apiPort = stamp.port * 3;
+  stamp.serviceUrl = '//' + stamp._apiHostname + ':' + stamp._apiPort + '/' + stamp.serviceUrl;
+}
+
+stamp.prelaunch = argv.prelaunch;
+if (argv.production) {
+  if (!argv.build) {
+    stamp.baseHref = getBaseHref('oa');
+  }
+  stamp.production = argv.production;
+}
+
+stamp.bundledjs = process.cwd() + '/src/js/rjs-bundle.json';
+
+//pass args
+args = [gulp, plugins, argv, stamp];
+
+require('./gulp/clean').apply(null, args);
+
+if (argv.login || argv.production) {
+  require('./gulp/build-login').apply(null, [].concat(args).concat([runSequence]));
+}
+require('./gulp/copy').apply(null, [].concat(args).concat([runSequence]));
+require('./gulp/bundle').apply(null, [].concat(args).concat([runSequence]));
+require('./gulp/build').apply(null, [].concat(args).concat([runSequence]));
+require('./gulp/lint').apply(null, args);
+//
+require('./gulp/test').apply(null, [].concat(args).concat([runSequence]));
+require('./gulp/watch').apply(null, args);
+//
+require('./gulp/serve').apply(null, [].concat(args).concat([runSequence]));
+
+
+/////////////////////////////////////////
+// Are you sure you know what you doing ?
+/////////////////////////////////////////
+require('./gulp/format').apply(null, args);
+
+/////////////////////////////////////////
+//defualt
+/////////////////////////////////////////
+gulp.task('default', ['build']);

@@ -7,6 +7,7 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'), //js 文件压缩
     minifyCSS = require('gulp-minify-css'),
     sass = require('gulp-sass'),
+    concat = require('gulp-concat'),
     // 重命名     rename = require('gulp-rename'),
     //压缩html   minifyHtml = require("gulp-minify-html");
     //JS代码检查  jshint = require("gulp-jshint");
@@ -51,8 +52,7 @@ gulp.task('script', function() {
 
     gulp.src(srcScript)
 
-    .pipe(uglify())
-
+  //  .pipe(uglify()) js打乱
     .pipe(gulp.dest(dstScript));
 
 });
@@ -163,13 +163,21 @@ gulp.task('server', function() {
 });
 
 
+
+gulp.task('testConcat', function () {
+    gulp.src(srcScript)
+        .pipe(concat('all.js'))//合并后的文件名
+        .pipe(gulp.dest('dist/js'));
+});
+
+
 //监控改动并自动刷新任务;
 
 //命令行使用gulp auto启动;
 
 gulp.task('auto', function() {
 
-    gulp.watch(srcScript, ['script']);
+    gulp.watch(srcScript,  ['script'], ['testConcat'] );
 
     gulp.watch(srcCss, ['css']);
 
