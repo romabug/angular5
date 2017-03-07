@@ -1,0 +1,28 @@
+// real test ok
+.templatemo_headerimage {
+    margin-top: 42px;
+    border-top: 4px solid black;
+    img {
+        border: 1px solid red;
+        padding: 5px;
+    }
+    li {
+        list-style: none;
+    }
+    .wow.fadeInDown {
+        color: purple;
+        span {
+            border-bottom: 2px dotted gray;
+        }
+    }
+    h2 {
+        span {
+            color: gray;
+        }
+    }
+}
+
+
+/* --------------------------------------------------------------------------
+    =theme
+-------------------------------------------------------------------------- */
