@@ -31,7 +31,7 @@ var srcScript = './src/js/*.js',
 
     dstCSS = './dist/css',
 
-    srcSass = './src/css/*.scss',
+    srcSass = './src/sass/assets/stylesheets/bootstrap/*.scss',
 
     dstSass = './dist/css',
 
