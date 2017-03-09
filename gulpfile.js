@@ -1,6 +1,6 @@
 //详细gulp  教程 http://www.cnblogs.com/2050/p/4198792.html
 //https://segmentfault.com/q/1010000004234745?_ea=556298
-/*jshint node: true*/
+//多插件 https://github.com/hxbo/gulp-project-template/blob/master/gulpfile.js
 //引入gulp及各种组件;   
 
 var gulp = require('gulp'),
@@ -210,9 +210,12 @@ gulp.task('auto', function() {
 //gulp默认任务(集体走一遍,然后开监控);
 
 gulp.task('default', ['script', 'sass', 'css', 'html', 'server', 'auto'], function() {
-
-    console.log('------------> game start------------>');
-
-
+    console.log('@@------------> game start------------>');
 
 });
+
+
+
+
+
+
