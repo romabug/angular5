@@ -1,0 +1,18 @@
+.templatemo_headerimage {
+  margin-top: 42px;
+  border-top: 4px solid black; }
+  .templatemo_headerimage img {
+    border: 1px solid red;
+    padding: 5px; }
+  .templatemo_headerimage li {
+    list-style: none; }
+  .templatemo_headerimage .wow.fadeInDown {
+    color: purple; }
+    .templatemo_headerimage .wow.fadeInDown span {
+      border-bottom: 2px dotted gray; }
+  .templatemo_headerimage h2 span {
+    color: gray; }
+
+/* --------------------------------------------------------------------------
+    =33theme
+-------------------------------------------------------------------------- */

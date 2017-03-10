@@ -8,12 +8,13 @@ var gulp = require('gulp'),
     minifyCSS = require('gulp-minify-css'),
     sass = require('gulp-sass'),
     concat = require('gulp-concat'),
+    del = require('del'),
     // 重命名     rename = require('gulp-rename'),
     //压缩html   minifyHtml = require("gulp-minify-html");
     //JS代码检查  jshint = require("gulp-jshint");
     //文件合并    concat = require("gulp-concat");
     //图片压缩    imagemin = require('gulp-imagemin'),
-
+ 
 
 
     //   imageminJpegRecompress = require('imagemin-jpeg-recompress'),
@@ -31,8 +32,8 @@ var srcScript = './src/js/*.js',
 
     dstCSS = './dist/css',
 
-    srcSass = './src/sass/assets/stylesheets/bootstrap/*.scss',
-
+  //  srcSass = './src/sass/assets/stylesheets/bootstrap/*.scss',
+    srcSass = './src/css/**/*.scss',
     dstSass = './dist/css',
 
     //  srcImage = './src/img/*.*',
@@ -207,10 +208,27 @@ gulp.task('auto', function() {
 });
 
 
+gulp.task('clean', function () {
+  del('dist/**/');
+  console.log('i am cleaning.........')
+});
+
+
+
+
 //gulp默认任务(集体走一遍,然后开监控);
 
-gulp.task('default', ['script', 'sass', 'css', 'html', 'server', 'auto'], function() {
+gulp.task('default', ['clean'], function() {
     console.log('@@------------> game start------------>');
+
+ setTimeout(function(){
+
+  gulp.start('script', 'sass', 'css', 'html', 'server', 'auto');
+
+},2000);
+
+  
+
 
 });
 
