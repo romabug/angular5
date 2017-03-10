@@ -12,8 +12,11 @@
     "gulp-autoprefixer": "^3.1.1",
     "gulp-clean": "^0.3.2",
     "gulp-concat": "^2.6.1",
+    "gulp-content-includer": "0.0.7",
+    "gulp-file-include": "^1.0.0",
     "gulp-minify-css": "^1.2.4",
     "gulp-notify": "^3.0.0",
+    "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.1.0",
     "gulp-uglify": "^2.0.1"
   },

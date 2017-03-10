@@ -9,12 +9,14 @@ var gulp = require('gulp'),
     sass = require('gulp-sass'),
     concat = require('gulp-concat'),
     del = require('del'),
-    // 重命名     rename = require('gulp-rename'),
+    fileinclude = require('gulp-file-include'),
+    contentIncluder = require('gulp-content-includer'),
+     rename = require('gulp-rename'),
     //压缩html   minifyHtml = require("gulp-minify-html");
     //JS代码检查  jshint = require("gulp-jshint");
     //文件合并    concat = require("gulp-concat");
     //图片压缩    imagemin = require('gulp-imagemin'),
- 
+
 
 
     //   imageminJpegRecompress = require('imagemin-jpeg-recompress'),
@@ -32,7 +34,7 @@ var srcScript = './src/js/*.js',
 
     dstCSS = './dist/css',
 
-  //  srcSass = './src/sass/assets/stylesheets/bootstrap/*.scss',
+    //  srcSass = './src/sass/assets/stylesheets/bootstrap/*.scss',
     srcSass = './src/css/**/*.scss',
     dstSass = './dist/css',
 
@@ -53,7 +55,7 @@ gulp.task('script', function() {
 
     gulp.src(srcScript)
 
-  //  .pipe(uglify()) js打乱
+    //  .pipe(uglify()) js打乱
     .pipe(gulp.dest(dstScript));
 
 });
@@ -142,9 +144,17 @@ gulp.task('imgmin', function() {
 
 gulp.task('html', function() {
 
-    gulp.src(srcHtml)
-
+  return gulp.src('./src/home.html')
+   .pipe(contentIncluder({
+                includerReg:/<!\-\-include\s+"([^"]+)"\-\->/g
+            }))
+     .pipe(rename('index.html'))
     .pipe(gulp.dest(dstHtml));
+
+
+
+  // return gulp.src(srcHtml)
+  //       .pipe(gulp.dest('dstHtml'));
 
 });
 
@@ -165,11 +175,22 @@ gulp.task('server', function() {
 
 
 
-gulp.task('testConcat', function () {
+gulp.task('testConcat', function() {
     gulp.src(srcScript)
-        .pipe(concat('all.js'))//合并后的文件名
+        .pipe(concat('all.js')) //合并后的文件名
         .pipe(gulp.dest('dist/js'));
+
+
+
 });
+
+
+
+
+    // gulp.src(srcHtml)
+    //     .pipe(concat('index.html')) //合并后的文件名
+    //     .pipe(gulp.dest('dist/'));
+
 
 
 //监控改动并自动刷新任务;
@@ -178,7 +199,7 @@ gulp.task('testConcat', function () {
 
 gulp.task('auto', function() {
 
-    gulp.watch(srcScript,  ['script'], ['testConcat'] );
+    gulp.watch(srcScript, ['script'], ['testConcat']);
 
     gulp.watch(srcCss, ['css']);
 
@@ -208,9 +229,10 @@ gulp.task('auto', function() {
 });
 
 
-gulp.task('clean', function () {
-  del('dist/**/');
-  console.log('i am cleaning.........')
+gulp.task('clean', function() {
+    //or  del('dist/**/');
+    return del.sync('dist/**/');
+    console.log('i am cleaning.........')
 });
 
 
@@ -221,19 +243,13 @@ gulp.task('clean', function () {
 gulp.task('default', ['clean'], function() {
     console.log('@@------------> game start------------>');
 
- setTimeout(function(){
+    setTimeout(function() {
 
-  gulp.start('script', 'sass', 'css', 'html', 'server', 'auto');
+        gulp.start('script', 'sass', 'css', 'html', 'server', 'auto');
 
-},2000);
+    }, 2000);
 
-  
+
 
 
 });
-
-
-
-
-
-
