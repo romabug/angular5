@@ -26,7 +26,8 @@ var gulp = require('gulp'),
 ////
 //设置各种输入输出文件夹的位置;
 
-var srcScript = './src/js/*.js',
+var srcScript = ['./src/js/*.js',
+                 './bower_components/jquery/dist/jquery.min.js'],
 
     dstScript = './dist/js',
 
@@ -54,9 +55,13 @@ var srcScript = './src/js/*.js',
 gulp.task('script', function() {
 
     gulp.src(srcScript)
-
-    //  .pipe(uglify()) js打乱
+    .pipe(concat('all.js'))
+ //  .pipe(uglify()) js打乱
     .pipe(gulp.dest(dstScript));
+ //合并后的文件名
+      
+  
+
 
 });
 
@@ -199,7 +204,7 @@ gulp.task('testConcat', function() {
 
 gulp.task('auto', function() {
 
-    gulp.watch(srcScript, ['script'], ['testConcat']);
+    gulp.watch(srcScript, ['script'] );
 
     gulp.watch(srcCss, ['css']);
 
@@ -215,6 +220,7 @@ gulp.task('auto', function() {
 
     // 同下面 gulp.watch('./src/**/*.*').on('change', browserSync.reload);
     gulp.watch('./src/**/*.*', function() {
+
         browserSync.reload();
     });
 
@@ -242,11 +248,10 @@ gulp.task('clean', function() {
 
 gulp.task('default', ['clean'], function() {
     console.log('@@------------> game start------------>');
+ 
 
     setTimeout(function() {
-
-        gulp.start('script', 'sass', 'css', 'html', 'server', 'auto');
-
+         gulp.start('script', 'sass', 'css', 'html', 'server', 'auto');
     }, 2000);
 
 
