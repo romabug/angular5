@@ -38,6 +38,7 @@ var srcScript = ['./src/js/*.js',
 
     //  srcSass = './src/sass/assets/stylesheets/bootstrap/*.scss',
     srcSass = ['./src/css/main.scss','./src/css/home.scss'],
+
     dstSass = './dist/css',
 
     //  srcImage = './src/img/*.*',
@@ -53,9 +54,9 @@ var srcScript = ['./src/js/*.js',
 
 //命令行使用gulp script启用此任务;
 
-gulp.task('script', function() {
+  gulp.task('script', function() {
 
-    gulp.src(srcScript)
+ return   gulp.src(srcScript)
         .pipe(concat('all.js'))
         //  .pipe(uglify()) js打乱
         .pipe(gulp.dest(dstScript));
@@ -70,7 +71,7 @@ gulp.task('script', function() {
 
 gulp.task('css', function() {
 
-    gulp.src(srcCss)
+  return  gulp.src(srcCss)
 
     .pipe(minifyCSS())
 
@@ -85,7 +86,7 @@ gulp.task('css', function() {
 
 gulp.task('sass', function() {
 
-    gulp.src(srcSass)
+  return  gulp.src(srcSass)
 
     .pipe(sass({
         //  outputStyle: 'compressed'
