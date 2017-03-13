@@ -1,5 +1,5 @@
 .test-romabug {
-  color: red; }
+  color: pink; }
 
 /*!
  * Bootstrap v4.0.0-alpha.6 (https://getbootstrap.com)
@@ -5991,7 +5991,7 @@ a.text-gray-dark:focus, a.text-gray-dark:hover {
     display: none !important; } }
 
 .test-p {
-  color: gray; }
+  color: dark; }
 
 .home-class-me {
   width: 333px;
@@ -5999,3 +5999,10 @@ a.text-gray-dark:focus, a.text-gray-dark:hover {
 
 .first-test {
   color: blue; }
+
+.test1 {
+  border: 2px solid black; }
+  @media (max-width: 991px) {
+    .test1 {
+      border: 3px solid yellow;
+      color: yellow; } }

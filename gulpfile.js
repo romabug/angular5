@@ -37,7 +37,10 @@ var srcScript = ['./src/js/*.js',
     dstCSS = './dist/css',
 
     //  srcSass = './src/sass/assets/stylesheets/bootstrap/*.scss',
-    srcSass = ['./src/css/main.scss','./src/css/home.scss'],
+    srcSass = [
+    // './src/sass/*.scss','./src/sass/**/*.scss',
+     './src/css/main.scss' 
+    ],
 
     dstSass = './dist/css',
 
@@ -57,7 +60,7 @@ var srcScript = ['./src/js/*.js',
   gulp.task('script', function() {
 
  return   gulp.src(srcScript)
-        .pipe(concat('all.js'))
+     //   .pipe(concat('all.js'))
         //  .pipe(uglify()) js打乱
         .pipe(gulp.dest(dstScript));
     //合并后的文件名
@@ -86,7 +89,7 @@ gulp.task('css', function() {
 
 gulp.task('sass', function() {
 
-  return  gulp.src(srcSass)
+    gulp.src(srcSass)
 
     .pipe(sass({
         //  outputStyle: 'compressed'
@@ -203,7 +206,9 @@ gulp.task('auto', function() {
 
     gulp.watch(srcCss, ['css']);
 
-    gulp.watch(srcSass, ['sass']);
+    gulp.watch(['./src/css/*.scss',
+        './src/sass/*.scss',
+        './src/sass/**/*.scss'], ['sass']);
 
     //   gulp.watch(srcImage, ['imgmin']);
 

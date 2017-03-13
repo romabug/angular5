@@ -1,18 +1,22 @@
+ .test-p {
+     color: dark;
+ }
  
-
-.test-p {
-    color: gray;
-
+ .home-class-me {
+     width: 333px;
+     color: red;
+ }
  
-}
-
-.home-class-me {
-    width: 333px;
-    color: red;
-}
-
-.first-test {
-    color: blue;
-}
-
+ .first-test {
+     color: blue;
+ }
  
+ .test1 {
+     border: 2px solid black;
+     @include media-breakpoint-down(md) {
+         border: 3px solid yellow;
+         color: yellow;
+     }
+ }
+ 
+  
