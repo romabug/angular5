@@ -1,5 +1,9 @@
 
 
-@import "../sass/assets/stylesheets/bootstrap.scss";
+.test-romabug {
+	color: red;
+}
+
+@import "../sass/bootstrap.scss";
 
 @import "./home.scss";

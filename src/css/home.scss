@@ -1,16 +1,22 @@
-/*! ********* home class   *** ******/
+! ********* home class   *** ******/
+
+.test-p {
+    color: black;
+
+// @include media-breakpoint-down(md) {
+ //     border: 1px solid red;
+ //   }
+
+}
 
 .home-class-me {
-
     width: 333px;
     color: red;
-
 }
-
 
 .first-test {
-	color: blue;
+    color: blue;
 }
 
- 
-/*! ******** home class **************/
+
+/*! ******** home class *************

@@ -11,7 +11,7 @@ var gulp = require('gulp'),
     del = require('del'),
     fileinclude = require('gulp-file-include'),
     contentIncluder = require('gulp-content-includer'),
-     rename = require('gulp-rename'),
+    rename = require('gulp-rename'),
     //压缩html   minifyHtml = require("gulp-minify-html");
     //JS代码检查  jshint = require("gulp-jshint");
     //文件合并    concat = require("gulp-concat");
@@ -27,7 +27,8 @@ var gulp = require('gulp'),
 //设置各种输入输出文件夹的位置;
 
 var srcScript = ['./src/js/*.js',
-                 './bower_components/jquery/dist/jquery.min.js'],
+        './bower_components/jquery/dist/jquery.min.js'
+    ],
 
     dstScript = './dist/js',
 
@@ -36,7 +37,7 @@ var srcScript = ['./src/js/*.js',
     dstCSS = './dist/css',
 
     //  srcSass = './src/sass/assets/stylesheets/bootstrap/*.scss',
-    srcSass = './src/css/**/main.scss',
+    srcSass = ['./src/css/main.scss','./src/css/home.scss'],
     dstSass = './dist/css',
 
     //  srcImage = './src/img/*.*',
@@ -55,14 +56,11 @@ var srcScript = ['./src/js/*.js',
 gulp.task('script', function() {
 
     gulp.src(srcScript)
-    .pipe(concat('all.js'))
- //  .pipe(uglify()) js打乱
-    .pipe(gulp.dest(dstScript));
- //合并后的文件名
-      
-  
-
-
+        .pipe(concat('all.js'))
+        //  .pipe(uglify()) js打乱
+        .pipe(gulp.dest(dstScript));
+    //合并后的文件名
+ 
 });
 
 
@@ -90,9 +88,7 @@ gulp.task('sass', function() {
     gulp.src(srcSass)
 
     .pipe(sass({
-
         //  outputStyle: 'compressed'
-
     }))
 
     .pipe(gulp.dest(dstSass));
@@ -149,17 +145,15 @@ gulp.task('imgmin', function() {
 
 gulp.task('html', function() {
 
-  return gulp.src('./src/home.html')
-   .pipe(contentIncluder({
-                includerReg:/<!\-\-include\s+"([^"]+)"\-\->/g
-            }))
-     .pipe(rename('index.html'))
-    .pipe(gulp.dest(dstHtml));
-
-
-
-  // return gulp.src(srcHtml)
-  //       .pipe(gulp.dest('dstHtml'));
+    return gulp.src('./src/home.html')
+        .pipe(contentIncluder({
+            includerReg: /<!\-\-include\s+"([^"]+)"\-\->/g
+        }))
+        .pipe(rename('index.html'))
+        .pipe(gulp.dest(dstHtml));
+ 
+    // return gulp.src(srcHtml)
+    //       .pipe(gulp.dest('dstHtml'));
 
 });
 
@@ -192,9 +186,9 @@ gulp.task('testConcat', function() {
 
 
 
-    // gulp.src(srcHtml)
-    //     .pipe(concat('index.html')) //合并后的文件名
-    //     .pipe(gulp.dest('dist/'));
+// gulp.src(srcHtml)
+//     .pipe(concat('index.html')) //合并后的文件名
+//     .pipe(gulp.dest('dist/'));
 
 
 
@@ -204,7 +198,7 @@ gulp.task('testConcat', function() {
 
 gulp.task('auto', function() {
 
-    gulp.watch(srcScript, ['script'] );
+    gulp.watch(srcScript, ['script']);
 
     gulp.watch(srcCss, ['css']);
 
@@ -221,7 +215,10 @@ gulp.task('auto', function() {
     // 同下面 gulp.watch('./src/**/*.*').on('change', browserSync.reload);
     gulp.watch('./src/**/*.*', function() {
 
-        browserSync.reload();
+        setTimeout(function() {
+            browserSync.reload();
+        }, 500);
+
     });
 
     // src 目录 另外写法
@@ -248,10 +245,10 @@ gulp.task('clean', function() {
 
 gulp.task('default', ['clean'], function() {
     console.log('@@------------> game start------------>');
- 
+
 
     setTimeout(function() {
-         gulp.start('script', 'sass', 'css', 'html', 'server', 'auto');
+        gulp.start('script', 'sass', 'css', 'html', 'server', 'auto');
     }, 2000);
 
 
