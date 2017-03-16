@@ -44,7 +44,7 @@ var srcScript = ['./src/js/*.js',
 
     dstSass = './dist/css',
 
-    //  srcImage = './src/img/*.*',
+    srcImage = './src/img/**/*.*',
 
     dstImage = './dist/img',
 
@@ -246,6 +246,19 @@ gulp.task('clean', function() {
 
 
 
+//    srcImage = './src/img/*.*',
+ //   dstImage = './dist/img',
+
+gulp.task("copyimage", function() {
+
+  gulp.src(srcImage)
+  .pipe( gulp.dest(dstImage));
+
+});
+
+
+
+
 
 //gulp默认任务(集体走一遍,然后开监控);
 
@@ -254,7 +267,7 @@ gulp.task('default', ['clean'], function() {
 
 
     setTimeout(function() {
-        gulp.start('script', 'sass', 'css', 'html', 'server', 'auto');
+        gulp.start('script', 'sass', 'css', 'copyimage', 'html', 'server', 'auto');
     }, 2000);
 
 
