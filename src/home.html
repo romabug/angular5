@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app>
+<html ng-app="myapp">
 <!--include "./header.html"-->
 
 <body data-spy="scroll" data-target=".navbar-collapse">
@@ -10,31 +10,22 @@
     <!-- start about -->
     <section id="about">
         <div class="container">
-            <div class="row">
+            <div class="row" ng-controller="myctrl">
                 <div class="col-sm-6 col-md-7 wow fadeInLeft" data-wow-delay="2000">
-
-
- 
-<div class="app-test-it"></div>
-
-
-                    <h3 class='test-romabug'>333 TO METROPOLIS TRUMP</h3>
-
-             <input type="text" ng-model="yourName" placeholder="Enter a name here"> 
-      <h1>Hello, {{ yourName }}!</h1> 
+                    <div app-test-it></div>
+                    <h5 class='test-romabug'>  TO METROPOLIS TRUMP</h5>
+                    <h1> -->  <span ng-bind ="yourName"></span> </h1>
                     <button type="button" class="test1 btn btn-lg btn-primary"> SUCCESS </button>
-                    <h2 class="first-test">The fashion jackets professional</h2>
-                    <p class='test-p'>
-                        Quanzhou Metropolis Trump Co., Ltd, established in 1997 
-                    </p>
+                    <hr>
                 </div>
-        
+            </div>
+      <div app-do-it   class="row" ng-controller="urctrl">
             </div>
         </div>
     </section>
     <!-- end about -->
     <!-- start newsletter -->
-    <section id="newsletter" class="text-center">
+    <section style='margin-top: 44px' id="newsletter" class="text-center">
         <div class="container">
             <div class="row">
                 <div class="text-center col-md-12 wow fadeInDown" data-wow-delay="2000">
@@ -43,7 +34,7 @@
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
                     <p>
-                        To get updates of our latest design, pre-made goods, or  
+                        To get updates of our latest design, pre-made goods, or
                     </p>
                 </div>
                 <div class="col-md-2"></div>
@@ -107,12 +98,8 @@
         </div>
     </section>
     <!-- end service -->
-
-
     <!-- start team -->
- 
     <!-- end team -->
-
     <!-- start work -->
     <section id="work" class="text-center">
         <div class="container">
@@ -122,7 +109,7 @@
                 </div>
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
-                    <p> Integrated with research & development and marketing, managed by 
+                    <p> Integrated with research & development and marketing, managed by
                     </p>
                 </div>
                 <div class="col-md-2"></div>
@@ -179,13 +166,8 @@
     </section>
     <!-- end work -->
     <!-- start pricing -->
- 
     <!-- end pricing -->
     <!-- start contact -->
-  
- 
-
-
     <!--include "./footer.html"-->
 </body>
 

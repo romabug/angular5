@@ -159,7 +159,24 @@ gulp.task('html', function() {
     // return gulp.src(srcHtml)
     //       .pipe(gulp.dest('dstHtml'));
 
+
 });
+
+
+
+gulp.task('htmltpl', function() {
+
+    return gulp.src('./src/html-tpl/*.html')
+      
+        .pipe(gulp.dest('./dist/html-tpl/'));
+ 
+ 
+});
+
+
+
+
+
 
 
 //服务器任务:以dist文件夹为基础,启动服务器;
@@ -213,6 +230,8 @@ gulp.task('auto', function() {
     //   gulp.watch(srcImage, ['imgmin']);
 
     gulp.watch(srcHtml, ['html']);
+    gulp.watch('./src/html-tpl/*.html', ['htmltpl']);
+
 
     gulp.watch('./src/**/*.*', function(event) {
         console.log('->>' + event.path + ' --> ' + event.type + ', run tasks...');
@@ -267,7 +286,7 @@ gulp.task('default', ['clean'], function() {
 
 
     setTimeout(function() {
-        gulp.start('script', 'sass', 'css', 'copyimage', 'html', 'server', 'auto');
+        gulp.start('script', 'sass', 'css', 'copyimage', 'html','htmltpl', 'server', 'auto');
     }, 2000);
 
 

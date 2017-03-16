@@ -1,0 +1,16 @@
+<div class="tpl-list">
+    <h2>I am tpl-listl.html</h2>
+  
+    <img ng-src='img/1.jpg' alt="">
+   
+    <h2 ng-bind='list1[0].city'></h2>
+    <span ng-bind="list1[0].name">  </span>
+    <span ng-bind="list1[1].name"> </span>
+   
+
+    <ul ng-repeat='item in list1'>
+        <li ng-bind='item.id'></li>
+        <li ng-bind='item.name'></li>
+        <li ng-bind='item.city'></li>
+    </ul>
+</div>
