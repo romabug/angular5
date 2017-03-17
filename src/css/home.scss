@@ -9,9 +9,10 @@
  
  .first-test {
      color: blue;
- }
+     
+  }
  
- .test1 {
+      .test1 {
      border: 2px solid black;
      @include media-breakpoint-down(md) {
          border: 3px solid yellow;

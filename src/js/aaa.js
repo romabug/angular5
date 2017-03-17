@@ -7,7 +7,6 @@ console.log(' aaa.js loaded....');
 
 $(document).ready(function() {
 
-
     $(".test1").click(function() {
         console.log('CLICKING ...CLICK')
     });
